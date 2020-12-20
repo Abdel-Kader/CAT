@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "cat_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "kzoldick",
+    "database": "cat_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "kzoldick",
+    "database": "cat_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

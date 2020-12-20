@@ -1,0 +1,11 @@
+
+?
+models/index.js,e\4\e41453b900e7c418643d34a8cb9d68efc0b0ddd6
+[
++migrations/20200723144553-create-medecin.js,8\f\8f23cc2b3f6577d0c8862e94069aa2121e994977
+X
+(migrations/20200723110147-create-user.js,3\8\38a7402662209f928d8fe3045888e46304452c65
+A
+models/medecin.js,c\0\c0f48e953595592d2b8e989934a8a6c255fabcca
+C
+routes/usersCtrl.js,4\6\46e46706903f8509ce4173d296b88ec48d3b58bf

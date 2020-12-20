@@ -1,0 +1,144 @@
+import React, { useEffect } from 'react';
+
+import 'moment/locale/fr';
+import { connect } from 'react-redux';
+import Header from '../../common/header';
+import {Alert, AlertTitle} from '@material-ui/lab';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import timeGridPlugin from "@fullcalendar/timegrid";
+import allLocales from '@fullcalendar/core/locales-all';
+import interactionPlugin from '@fullcalendar/interaction';
+import { getMedecins } from '../../../services/medecinService';
+import { patientHomeStyle } from '../../common/styles/patientHomeStyle';
+import { Grid, Paper, Avatar, Button, Box, Container,  CircularProgress, Backdrop} from '@material-ui/core';
+
+
+function Home(props) {
+    const classes = patientHomeStyle()
+
+    
+    useEffect(() => {
+        props.dispatch(getMedecins())
+    }, [])
+        
+    
+    const { medecins, loading } = props
+    
+
+    const handleClickOpen = (medecin) => {
+        props.history.push('detail-medecin', {
+            medecin: medecin
+        })
+     };
+    
+     const handleEventClick = (arg) => {
+        props.history.push('detail-medecin', 
+          JSON.stringify(arg.event))
+    }
+    
+    return (
+        <>
+        <Header/>
+            <Container>
+                <Backdrop className={classes.backdrop} open={loading}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+                <Box my={2} className={classes.root}>
+                    {
+                        props.errorMessage ?
+                            <Alert severity="error">{props.errorMessage}</Alert>
+                            :
+                            null
+                    }
+                    <Container>
+                        <Grid container style={{marginTop: 50}}>
+                            <Grid item xs="9">
+                            {
+                            medecins.length > 0 ?
+                                <>
+                                    <div className="page-title">
+                                        <h2>Liste des médecins</h2>
+                                    </div>
+                                    <h4>Trouvez le médecin qui vous convient et envoyez lui une demande</h4><br />
+                                    {
+                                        medecins.map((medecin) =>
+                                            <Paper className={classes.paper} elevation={2}>
+                                                <Grid container justify='center'>
+                                                    <Grid item xs={4} justify='center'>
+                                                      <Avatar alt={medecin.User.first_name} className={classes.large} src="assets/images/users/doctor.webp"/>
+                                                      
+                                                      <h4 style={{color: '#4cba75', fontWeight: 'bold'}}>Dr {medecin.User.first_name} {medecin.User.last_name}</h4>
+                                                      
+                                                      <h5>{medecin.Specialite.libelle === 'Généraliste' ? medecin.Specialite.libelle = "Médecin Généraliste" : medecin.Specialite.libelle}</h5>
+                                                      <h5>{medecin.Service.libelle }</h5>
+                                                      
+                                                        <p style={{ fontSize: 14 }}>{medecin.User.address}</p>
+                                                        <br/>
+                                                        
+                                                      <p style={{ fontSize: 14 }}><small><strong>Tarif de la téléconsultation</strong></small> : 5.000 FCFA</p>
+                                                      
+                                                      {/* <br/>
+                                                      <Button variant="contained" style={{padding: 10, color:'#fff', fontSize: 13, fontWeight: 'bold', backgroundColor: '#4cba75'}} color="primary" onClick={()=> handleClickOpen(medecin)}>
+                                                        Prendre rendez-vous
+                                                      </Button> */}
+                                                    </Grid>
+
+                                                    <Grid xs={7} container>
+                                                        <FullCalendar 
+                                                            locales={allLocales}
+                                                            locale='fr'
+                                                            displayEventEnd={false}
+                                                            initialView="dayGridWeek" 
+                                                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                                                            editable={true}
+                                                            eventClick={handleEventClick}
+                                                            events={medecin.horaires}
+                                                            eventColor='#ff5e3a'
+                                                        />
+                                                    </Grid>
+                                                </Grid>   
+                                            </Paper>
+                                        )
+                                    
+                                    }    
+                                </>    
+
+                            : 
+                    
+                            <Grid container justify="center" className={classes.errorContainer}>
+                                {!loading ? 
+                                    <Grid item xs="8">
+                                        <Alert severity="info">
+                                            <AlertTitle>Message</AlertTitle>
+                                            <strong>Aucun médecin disponible pour la semaine !</strong>
+                                        </Alert>                
+                                    </Grid>
+                                : null}
+                            </Grid>
+                        
+                        }
+                            </Grid>
+                       
+
+                        </Grid>
+                    </Container>
+
+                </Box>
+            </Container>
+        </>
+ 
+    )
+}
+
+
+
+const mapStateToProps = (state) => {
+    return {
+      medecins: state.medecin.medecins,
+      errorMessage: state.medecin.error,
+      loading: state.medecin.loading,
+    }
+};
+
+export default connect(mapStateToProps)(Home)
