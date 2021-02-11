@@ -35,7 +35,8 @@ module.exports = {
                                 [Op.gte]: new Date()
                         } }
                     }
-                ]
+                ],
+				order: [["id", "ASC"]],
             }).then(medecins => {
                 if(medecins)
                     res.status(201).json(medecins)

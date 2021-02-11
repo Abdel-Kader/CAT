@@ -110,7 +110,7 @@ function MedecinHeader(props) {
 											activeClassName="active"
 											exact={true}
 										>
-										<i class="icofont-dashboard-web"></i><span>Dashboard</span>
+										<i className="icofont-dashboard-web" style={{fontSize:18, marginLeft:20}}/><span>Dashboard</span>
 										</NavLink>
 									</li>
 									<li>
@@ -119,7 +119,7 @@ function MedecinHeader(props) {
 											activeClassName="active"
 											exact={true}
 										>
-											<span>Demander un avis</span>
+										<i class="icofont-monitor" style={{fontSize:18, marginLeft:20}}/><span>Demander un avis</span>
 										</NavLink>
 									</li>
 									<li>
@@ -128,7 +128,7 @@ function MedecinHeader(props) {
 											activeClassName="active"
 											exact={true}
 										>
-											<span>Demandes reçues</span>
+										<i class="icofont-patient-file" style={{fontSize:18, marginLeft:20}}/><span>Demandes reçues</span>
 										</NavLink>
 									</li>
 									<li>
@@ -137,7 +137,7 @@ function MedecinHeader(props) {
 											activeClassName="active"
 											exact={true}
 										>
-											<span>Demandes envoyées</span>
+										<i class="icofont-archive" style={{fontSize:18, marginLeft:20}}/><span>Demandes envoyées</span>
 										</NavLink>
 									</li>
 								</>

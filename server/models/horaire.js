@@ -22,8 +22,6 @@ module.exports = (sequelize, DataTypes) => {
   
   Horaire.init({
     type: DataTypes.STRING,
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
     start: DataTypes.DATE,
     end: DataTypes.DATE,
   }, {

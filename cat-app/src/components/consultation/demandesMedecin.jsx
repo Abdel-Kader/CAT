@@ -69,7 +69,7 @@ import { patientHomeStyle } from '../common/styles/patientHomeStyle';
                                         <img src="assets/images/notFound.png" alt="not found" style={{width: 100}}/>
                                         <br/>
                                         <br/>
-                                        <h6>Vous n'avez aucune demande de rendez-vous !</h6>
+                                        <h4>Vous n'avez aucune demande de rendez-vous !</h4>
 
                                     </Grid>
                             }

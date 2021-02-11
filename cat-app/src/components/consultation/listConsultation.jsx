@@ -149,7 +149,7 @@ function ListConsultations(props) {
                                                                         <StyledTableRow key={demande.id}>
                                                                             <StyledTableCell>Dr {demande.Medecin.User.first_name} {demande.Medecin.User.last_name}</StyledTableCell>
                                                                             <StyledTableCell>{demande.Medecin.User.phone_number}</StyledTableCell>
-                                                                            <StyledTableCell>{demande.Medecin.Specialite.libelle == 'Généraliste' ? 'Médecin Généraliste' : demande.Medecin.Specialite.libelle}</StyledTableCell>
+                                                                            <StyledTableCell>{demande.Medecin.specialite.libelle == 'Généraliste' ? 'Médecin Généraliste' : demande.Medecin.specialite.libelle}</StyledTableCell>
                                                                             <StyledTableCell>{demande.motif}</StyledTableCell>
                                                                             {/* <StyledTableCell>{demande.Medecin.Service.libelle}</StyledTableCell> */}
                                                                             <StyledTableCell>{new Date(demande.start).toLocaleDateString(undefined, options)} à {new Date(demande.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</StyledTableCell>

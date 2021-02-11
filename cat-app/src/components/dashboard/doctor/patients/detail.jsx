@@ -164,7 +164,7 @@ function DetailPatient(props) {
 										className="item"
 										style={{ paddingLeft: 0, paddingRight: 0 }}
 									>
-										{rdv != null ? (
+										{rdv && rdv.length>0 ? (
 											<table
 												className="table table-bordered"
 												style={{ width: "100%" }}
@@ -224,7 +224,6 @@ function DetailPatient(props) {
 											<thead>
 												<tr>
 													<th>Date</th>
-													<th>Heure</th>
 													<th>Constantes</th>
 													<th>Diagnostic</th>
 													<th>Examens prescrits</th>
@@ -234,8 +233,7 @@ function DetailPatient(props) {
 												{consultations != null
 													? consultations.map((res, index) => (
 															<tr key={index}>
-																<td>{res.date_consultation}</td>
-																<td>{res.heure_debut}</td>
+																<td>{res.date_consultation} à {res.heure_debut}</td>
 																<td>
 																	<table className="table table-bordered">
 																		<thead>

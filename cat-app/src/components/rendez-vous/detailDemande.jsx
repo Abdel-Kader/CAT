@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import Alert from '@material-ui/lab/Alert';
 import AdminHeader from '../common/header/MedecinHeader';
-import { updateDemande } from '../../services/rdvService';
+import { updateStatus } from '../../services/rdvService';
 import { detailMedecinStyles } from '../common/styles/detailMedecin';
 import { Grid, Paper, Button, CircularProgress, Backdrop } from "@material-ui/core";
 
@@ -39,20 +39,26 @@ function DetailDdemande(props) {
                 cancelButtonText: 'Non, fermer !',
             }).then((result) => {
                 if (result.value) {
-                    props.dispatch(updateDemande(id,status))
+                    props.dispatch(updateStatus(id,status))
                 }
             })
         }
         else {
-            props.dispatch(updateDemande(id,status))
+            props.dispatch(updateStatus(id, status))
+            Swal.fire({
+                icon: "success",
+                title: "Rendez-vous accepté avec succès !",
+                showConfirmButton: true,
+            }).then((res) => {
+                // props.history.push('admin')
+                props.history.push('tele-consultation')
+            });
         }
     }
 
     if (rdv)
     {
-        setTimeout(() => {
-            props.history.push('tele-consultation')
-          }, 1500)
+        
     }
     return (
         <div id="wrapper">
@@ -60,9 +66,9 @@ function DetailDdemande(props) {
             <div className="main">
 			    <div className="main-content">
                     <div className="row">
-                        <Backdrop className={classes.backdrop} open={loader}>
+                        {/*<Backdrop className={classes.backdrop} open={loader}>
                             <CircularProgress color="inherit" />
-                        </Backdrop>
+    </Backdrop>*/}
                         <Grid container className={classes.root} justify='center'>
                             <Grid item xs={7}>
                                 <Paper className={classes.paper2}>

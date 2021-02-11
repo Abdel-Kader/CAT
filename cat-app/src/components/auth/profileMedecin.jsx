@@ -180,8 +180,15 @@ function ProfilMadecin(props) {
 				})
 				.then((res) => {
                     // console.log(res);
-                    setOpenCal(false);
-                    window.location.reload();
+					setOpenCal(false);
+					Swal.fire({
+						icon: "success",
+						title: "Disponibilité ajoutée avec succès !",
+						showConfirmButton: true,
+					}).then((res) => {
+						// props.history.push('admin')
+						window.location.reload();
+					});
 				})
 				.catch((err) => {
 					console.log(err);
@@ -204,9 +211,9 @@ function ProfilMadecin(props) {
 						<div className="profile-content" style={{ marginTop: 20 }}>
 							<div className="row">
 								<div className="col-sm-4">
-									<div class="profile-state" style={{ paddingLeft: 0 }}>
+									<div className="profile-state" style={{ paddingLeft: 0 }}>
 										<div
-											class="icon-box"
+											className="icon-box"
 											style={{
 												backgroundColor: "#4cba75",
 												textAlign: "center",
@@ -228,21 +235,21 @@ function ProfilMadecin(props) {
 												</h4>
 												<h4>
 													<i
-														class="icofont-phone-circle"
+														className="icofont-phone-circle"
 														style={{ marginRight: 15, fontSize: 17 }}
 													/>{" "}
 													{userInfo.User.phone_number}
 												</h4>
 												<h4>
 													<i
-														class="icofont-ui-email"
+														className="icofont-ui-email"
 														style={{ marginRight: 15, fontSize: 17 }}
 													/>{" "}
 													{userInfo.User.email}
 												</h4>
 												<h4>
 													<i
-														class="icofont-location-pin"
+														className="icofont-location-pin"
 														style={{ marginRight: 15, fontSize: 17 }}
 													/>{" "}
 													{userInfo.User.address}
@@ -263,16 +270,16 @@ function ProfilMadecin(props) {
 											className={classes.submit}
 										>
 											Modifier{" "}
-											<i class="icofont-edit-alt" style={{ marginLeft: 15 }} />
+											<i className="icofont-edit-alt" style={{ marginLeft: 15 }} />
 										</Button>
 										<br />
 										<br />
 									</div>
 								</div>
 								<div className="col-sm-8">
-									<div class="profile-state" style={{ paddingLeft: 0 }}>
+									<div className="profile-state" style={{ paddingLeft: 0 }}>
 										<div
-											class="icon-box"
+											className="icon-box"
 											style={{
 												backgroundColor: "#4cba75",
 												textAlign: "center",
@@ -426,7 +433,7 @@ function ProfilMadecin(props) {
 								className={classes.submit}
 							>
 								Modifier{" "}
-								<i class="icofont-edit-alt" style={{ marginLeft: 15 }} />
+								<i className="icofont-edit-alt" style={{ marginLeft: 15 }} />
 							</Button>
 						</div>
 					</DialogContent>

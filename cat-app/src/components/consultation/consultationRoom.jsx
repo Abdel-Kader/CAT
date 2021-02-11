@@ -29,6 +29,7 @@ import {
 } from "@material-ui/icons";
 import { DropzoneAreaBase } from "material-ui-dropzone";
 import { add } from "../../services/consultationService";
+import { updateStatus } from '../../services/rdvService';
 import { getAll } from "../../services/examService";
 import Swal from "sweetalert2";
 
@@ -238,7 +239,7 @@ class ConsultationRoom extends React.Component {
 	submit = (e) => {
 		e.preventDefault();
 		const consultation = {
-			id: this.props.history.location.state.id,
+			// id: this.props.history.location.state.id,
 			diagnostic: this.state.diagnostic,
 			date_consultation: this.state.date_consultation,
 			constantes: {
@@ -259,6 +260,15 @@ class ConsultationRoom extends React.Component {
 			heure_debut: this.state.heure_debut,
 		};
 		this.props.dispatch(add(consultation));
+		Swal.fire({
+			icon: 'success',
+			title: 'Consultation terminée avec succès',
+			showConfirmButton: true
+		}).then((res) => {
+			this.props.dispatch(updateStatus(this.props.history.location.state.id,4))
+			this.props.history.push('tele-consultation')
+			// window.location.reload()
+		})
 	};
 
 	goToFiche = () => {
@@ -281,6 +291,19 @@ class ConsultationRoom extends React.Component {
 		this.props.history.push("fiche-consultation", fiche);
 	};
 	render() {
+		// console.log(this.props.consultation)
+		// if (this.props.consultation) 
+        // {
+		// 	Swal.fire({
+        //         icon: 'success',
+        //         title: 'Consultation terminée avec succès',
+        //         showConfirmButton: true
+        //     }).then((res) => {
+        //         this.props.history.push('tele-consultation')
+        //         // window.location.reload()
+        //     })
+        // }
+        
 		const files = this.state.files.map((file) => (
 			<li key={file.name}>
 				{file.name} - {file.size} bytes
@@ -797,7 +820,7 @@ class ConsultationRoom extends React.Component {
 									</Grid>
 
 									<Grid item xs={5}>
-										<Box style={{ backgroundColor: "#ff5e3a", height: "100%" }}>
+										<Box style={{ height: "100%" }}>
 											<video
 												style={{ height: "80vh" }}
 												ref={this.remoteVideoref}
@@ -814,15 +837,15 @@ class ConsultationRoom extends React.Component {
 												ref={this.localVideoref}
 												autoPlay
 											></video>
-											<div style={{ backgroundColor: "red" }}>
+											{/* <div style={{ backgroundColor: "red" }}>
 												<button onClick={this.createAnswer}>Répondre </button>
-											</div>
+											</div> */}
 										</Box>
 									</Grid>
 								</Grid>
 							</form>
 						</div>
-					</div>
+					</div> 
 				</div>
 			</div>
 		);
@@ -832,7 +855,7 @@ const mapStateToProps = (state) => {
 	return {
 		consultation: state.consultation.consultationAdded,
 		errorMessage: state.consultation.error,
-		loading: state.consultation.loader,
+		loading: state.consultation.loading,
 		loader: state.exam.loading,
 		exams: state.exam.exams,
 		error: state.exam.error,

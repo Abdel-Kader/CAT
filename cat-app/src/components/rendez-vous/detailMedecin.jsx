@@ -142,9 +142,9 @@ function DetailMedecin(props) {
                             <span style={{fontSize: 14}}>Veuillez remplir ce formulaire pour valider votre demande
                             </span>
                         </Alert>
-                        <Backdrop className={classes.backdrop} open={loading}>
+                        {/*<Backdrop className={classes.backdrop} open={loading}>
                             <CircularProgress color="inherit"/>
-                        </Backdrop>
+                        </Backdrop>*/}
                         <Backdrop className={classes.backdrop} open={loader}>
                             <CircularProgress color="inherit"/>
                         </Backdrop>

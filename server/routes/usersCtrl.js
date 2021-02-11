@@ -1,4 +1,4 @@
-var bcrypt      = require('bcrypt');
+var bcrypt      = require('bcryptjs');
 var models      = require('../models/');
 var jwtUtils = require('../utils/jwt.utils');
 const { Op } = require("sequelize");

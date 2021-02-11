@@ -57,7 +57,7 @@ module.exports = {
                 })
                 return res.status(201).json({ 'horaireId': horaire.id })
         }).catch(function (err) {
-            return res.status(500).json({ error: "une erreur est survenue ! Veuillez reessayer", err });
+            return res.status(500).json({ error: err });
         });
     },
 
