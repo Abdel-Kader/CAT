@@ -49,6 +49,9 @@ function LoginForm(props) {
             }
             else if (user_connected.profile === 2)
             { props.history.push('home') }
+
+            else if (user_connected.profile === 3)
+            { props.history.push('admin') }
         }
     })
     

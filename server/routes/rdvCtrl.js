@@ -338,7 +338,7 @@ module.exports = {
 								res
 									.status(500)
 									.json({
-										error: "Erreur lors de la modification du profil",
+										error: "Erreur lors de la modification de la demande",
 										err,
 									});
 							});

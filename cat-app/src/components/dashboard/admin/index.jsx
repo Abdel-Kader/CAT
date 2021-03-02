@@ -10,6 +10,7 @@ import { getLocalStorage } from "../../../utils/localStorageUtil";
 function AdminDashboard(props) {
 	const user = getLocalStorage("user");
 	const classes = patientHomeStyle();
+
 	useEffect(() => {
 		props.dispatch(fetchAll());
 	}, []);
@@ -26,7 +27,7 @@ function AdminDashboard(props) {
 							<CircularProgress color="inherit" />
 						</Backdrop>
 						<div className="main-content-head">
-							<h2>{user.first_name}</h2>
+							<h2>{user.first_name} {user.last_name}</h2>
 							<p>Bienvenue sur votre Dashboard</p>
 						</div>
 						<div className="profile-content">
@@ -46,8 +47,7 @@ function AdminDashboard(props) {
 											<Link
 												exact={true}
 												to={{
-													pathname: "/users",
-													state: { users },
+													pathname: "/users"
 												}}
 											>
 												<h3>
@@ -57,7 +57,7 @@ function AdminDashboard(props) {
 										</div>
 										<strong>
 											{users ? <span>{users.length}</span> : null}
-											
+
 										</strong>
 									</div>
 								</div>
@@ -73,8 +73,7 @@ function AdminDashboard(props) {
 											<Link
 												exact={true}
 												to={{
-													pathname: "/rendez-vous",
-													state: { rdv },
+													pathname: "/rendez-vous"
 												}}
 											>
 												<h3>
@@ -153,18 +152,18 @@ function AdminDashboard(props) {
 												<tbody>
 													{rdvT != null
 														? rdvT.map((res, index) => (
-																<tr key={index}>
-																	<td>
-																		{res.Patient.User.first_name}{" "}
-																		{res.Patient.User.last_name}
-																	</td>
-																	<td>
-																		{new Date(res.start).toLocaleTimeString()}{" "}
-																	</td>
-																	<td>{res.motif}</td>
-																	<td>{res.Medecin.User.first_name}</td>
-																</tr>
-														  ))
+															<tr key={index}>
+																<td>
+																	{res.Patient.User.first_name}{" "}
+																	{res.Patient.User.last_name}
+																</td>
+																<td>
+																	{new Date(res.start).toLocaleTimeString()}{" "}
+																</td>
+																<td>{res.motif}</td>
+																<td>{res.Medecin.User.first_name}</td>
+															</tr>
+														))
 														: null}
 												</tbody>
 											</table>

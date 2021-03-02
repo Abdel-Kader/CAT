@@ -7,11 +7,15 @@ import { connect } from 'react-redux'
 function MedecinHeader(props) {
 	const user = getLocalStorage("user");
 
-	useEffect(() => {
+	/*useEffect(() => {
 		if (user != null) {
-			if (user.profile === 2) <Redirect to="home" />;
+			if (user.profile === 2) 
+				props.history.push('home');
+			
+			else if (user.profile === 3) 
+				props.history.push('admin');
 		}
-	});
+	});*/
 
 	const logOut = () => {
 		props.dispatch(logout());

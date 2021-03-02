@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import 'moment/locale/fr';
 import { connect } from 'react-redux';
-import Header from '../../common/header';
+import Header from '../../common/header/';
 import {Alert, AlertTitle} from '@material-ui/lab';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid'; 
@@ -11,7 +11,7 @@ import allLocales from '@fullcalendar/core/locales-all';
 import interactionPlugin from '@fullcalendar/interaction';
 import { getMedecins } from '../../../services/medecinService';
 import { patientHomeStyle } from '../../common/styles/patientHomeStyle';
-import { Grid, Avatar, Button, Box, Container,  CircularProgress, Backdrop, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
+import { Grid, Avatar, Button, Box, Container, CircularProgress, Backdrop, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
 
 //Datatable Modules
 import "datatables.net-dt/js/dataTables.dataTables"
